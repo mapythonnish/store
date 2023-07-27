@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registered Store Owners</title>
+    <!-- Add your CSS links here -->
+
+    <!-- Include Bootstrap CSS and DataTables CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+</head>
+<style>
+    button.back-to-registration {
+    background-color: #102A43;
+    border: none;
+    padding: 10px 25px;
+    margin-top: 26px;
+    border: none;
+}
+
+.row.z20-rm{
+    border: 1px solid #ccc;
+    /* padding-bottom: 50px; */
+}
+
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row mt-5">
+                    <div class="col-lg-12 zsp20">
+                        <h5 style="text-align: center;">Registered Store Owners</h5><br>
+                    </div>
+                </div>
+                <div class="row z20-rm">
+                    <div class="col-lg-12">
+                        <table id="exampl" class="table cell-border" style="width:100%">
+                            <thead class="TableHead">
+                                <tr>
+                                    <th>S. No.</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for store_owner in registered_store_owners %}
+                                <tr class="firstRow">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ store_owner.name }}</td>
+                                    <td>{{ store_owner.phone_number }}</td>
+                                    <td>{{ store_owner.email }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr class="firstRow">
+                                    <td colspan="4">No store owners registered yet.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                   
+                </div>
+                <center><button type="button" class="back-to-registration">
+                    <span><a style="color: white; text-decoration: none;" href="{% url 'register_store_owner' %}">Back to Registration</a></span>
+                </button></center>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Your other JS scripts if needed -->
+</body>
+
+</html>
+

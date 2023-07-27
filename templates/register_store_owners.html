@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+
+<body>
+   
+    <section class="main-wrapper">
+
+        <div class="inner-div">
+            <div class="text-center">
+                <img src="/static/img/wiseowl.png" alt="" width="100" height="80" />
+            </div>
+
+            <h1>Registration</h1>
+            <form method="post" action="{% url 'register_store_owner' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-100">
+                        <div class="floating-label-group">
+                            <label class="floating-label">Your Name</label>
+                            <input type="text" id="name" name="name" class="form-control" autocomplete="off" autofocus
+                                required placeholder="Enter your Name" />
+                        </div>
+                    </div>
+                    <div class="col-100">
+                        <div class="floating-label-group">
+                            <label class="floating-label">Your Mobile No. </label>
+                            <input type="text" id="phone_number" name="phone_number" class="form-control"
+                                autocomplete="off" autofocus required placeholder="Enter your Number" />
+                        </div>
+                    </div>
+                    <div class="col-100">
+                        <div class="floating-label-group">
+                            <label class="floating-label">Email </label>
+                            <input type="text" id="email" name="email" class="form-control" autocomplete="off" autofocus
+                                required placeholder="Enter your Email" />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn" type="submit">Submit</button><br><br>
+                    <span><a href="{% url 'store_owner' %}">View Users</a></span>
+                </div>
+
+            </form>
+            <center>
+                <p class="text">
+                    <a href="{% url 'logout_user' %}">Logout</a>
+                </p>
+            </center>
+        </div>
+    </section>
+</body>
+
+</html>
