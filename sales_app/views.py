@@ -3,11 +3,14 @@ from django.shortcuts import render
 from .models import StoreOwner
 from django.shortcuts import render, redirect
 from .models import StoreOwner
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from .serializers import *
 from django.contrib.auth import authenticate, login, logout
 from .serializers import UserRegistrationSerializer
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
+
+
 def index(request):
     return render(request, "index.html")
 
@@ -43,6 +46,13 @@ def register_store_owner(request):
 
             user_profile = StoreOwner(name=name, email=email, phone_number=phone_number, user=request.user)
             user_profile.save()
+            
+            subject = 'Welcome to Our Store!'
+            message = f'Hello {name},\n\nThank you for Shopping with us. We are excited to have you on board!\n\nBest regards your current score iss,\nYour Store Team'
+            email_from = ''
+            recipient_list = [email]
+            email = EmailMessage(subject, message, email_from, recipient_list)
+            email.send()
             return redirect('success_page') 
 
         return render(request, 'register_store_owners.html')
@@ -57,7 +67,7 @@ def view_registered_store_owners(request):
         return render(request, 'storeowner.html', {'registered_store_owners': registered_store_owners})
     return redirect('index')
 
-
+ 
 def saleslogin(request):
     if request.method == 'POST':
         serializer = UserLoginSerializer(data=request.POST)

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5)43^cx+-+2@#at=he8&qsou)li_wyxbn3##tbxq1ir4-62-=e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".vercel.app",".now.sh","127.0.0.1","localhost"]
 
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',
@@ -76,10 +76,16 @@ WSGI_APPLICATION = 'sales_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+ 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'TestDB',  # Replace with your database name
+        'USER': 'postgres',  # Replace with your database username
+        'PASSWORD': '1234',  # Replace with your database password
+        'HOST': 'localhost',  # Replace with your database host
+        'PORT': '5433',  # Leave it empty to use the default PostgreSQL port (5432)
     }
 }
 
@@ -128,3 +134,12 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kumarmanish1998.hcst@gmail.com'
+EMAIL_HOST_PASSWORD = 'hwcrwwqaielxivhr'
